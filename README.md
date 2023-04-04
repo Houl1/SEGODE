@@ -57,10 +57,10 @@ This project has several tasks, including: **Single-step link prediction**, **Mu
 | Reddit | 10,985 | 292,222 | 9,015 | 11,869 | 27 |
 | Math | 24,740 | 230,956 | 4,899 | 13,162 | 26 | 
 
-[Email](http://networkrepository.com/email-dnc.php): Email-dnc (Email) is a network of email exchanges between members of the U.S. Democratic National Committee in 2016.
-[UCI](http://konect.cc/networks/opsahl-ucsocial/): UCI records interactions between students at the University of California, Irvine, who post online in a forum.
-[Bitcoinalpha](http://snap.stanford.edu/data/soc-sign-bitcoin-alpha.html): Bitcoinalpha (Bitcoin) is a rating network for the Bitcoin Alpha bitcoin trading platform.
-[Reality](http://networkrepository.com/ia-reality-call.php): Reality-call (Reality) is a user communication network from data from a user communication experiment at MIT.
-[Wikipedia](http://snap.stanford.edu/jodie/wikipedia.csv): Wikipedia (Wiki) is a network of Wikipedia page co-editors.
-[Reddit](http://snap.stanford.edu/jodie/reddit.csv): Reddit is a network of co-editors of posts on Reddit.
-[Math](http://snap.stanford.edu/data/sx-mathoverflow.html): Math is an interactive network of users on the Stack Exchange website Math Overflow.
+    [Email](http://networkrepository.com/email-dnc.php): Email-dnc (Email) is a network of email exchanges between members of the U.S. Democratic National Committee in 2016.
+    [UCI](http://konect.cc/networks/opsahl-ucsocial/): UCI records interactions between students at the University of California, Irvine, who post online in a forum.
+    [Bitcoinalpha](http://snap.stanford.edu/data/soc-sign-bitcoin-alpha.html): Bitcoinalpha (Bitcoin) is a rating network for the Bitcoin Alpha bitcoin trading platform.
+    [Reality](http://networkrepository.com/ia-reality-call.php): Reality-call (Reality) is a user communication network from data from a user communication experiment at MIT.
+    [Wikipedia](http://snap.stanford.edu/jodie/wikipedia.csv): Wikipedia (Wiki) is a network of Wikipedia page co-editors.
+    [Reddit](http://snap.stanford.edu/jodie/reddit.csv): Reddit is a network of co-editors of posts on Reddit.
+    [Math](http://snap.stanford.edu/data/sx-mathoverflow.html): Math is an interactive network of users on the Stack Exchange website Math Overflow.
