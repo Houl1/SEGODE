@@ -31,3 +31,20 @@ Structure-Enhanced Graph Neural ODE Network for Temporal Link Prediction
         utils/                       (utility files)
         train.py                     (main file used to train single-step and scarce-data link prediction)  
         train_multisteps.py          (main file used to train multi-step link prediction)
+
+# Commands
+This project has several tasks, including: **Single-step link prediction**, **Multi-step link prediction** and **Scarce-data link prediction**. Thus, the corresponding Python commands are:
+1. **Single-step link prediction**: 
+
+       python3 train.py --time_steps 8 --dataset bitcoinotc --gpu 0 --batch_size 1024 --tasktype siglestep
+
+2. **Multi-step link prediction**: 
+
+       python3 train_multisteps.py --time_steps 14 --dataset wiki --gpu 0 --batch_size 1024 --tasktype multisteps
+       
+3. **Scarce-data link prediction**: 
+
+       python3 train.py --time_steps 14 --dataset wiki --gpu 0 --batch_size 1024 --tasktype data_scarce --scare_snapshot 9,10,11
+       
+ 
+    
