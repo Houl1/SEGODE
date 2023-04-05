@@ -42,7 +42,7 @@ This project has several tasks, including: **Single-step link prediction**, **Mu
 
        python3 train_multisteps.py --time_steps 14 --dataset wiki --gpu 0 --batch_size 1024 --tasktype multisteps
        
-3. **Scarce-data link prediction**: 
+3. **Data-scarce link prediction**: 
 
        python3 train.py --time_steps 14 --dataset wiki --gpu 0 --batch_size 1024 --tasktype data_scarce --scare_snapshot 9,10,11
        
