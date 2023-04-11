@@ -136,7 +136,6 @@ if __name__ == "__main__":
     dataloader = DataLoader(dataset,
                             batch_size=args.batch_size,
                             shuffle=True,
-                            num_workers=2,
                             collate_fn=MyDataset.collate_fn)
     model = Mymodel(args, num_feat=1, num_gdv=gdvs[0].shape[1], time_length=args.time_steps).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay,eps=1e-5)
