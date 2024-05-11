@@ -5,7 +5,8 @@ import networkx as nx
 from collections import defaultdict
 from sklearn.preprocessing import MultiLabelBinarizer
 from utils.random_walk import Graph_RandomWalk
-
+import scipy.sparse as sp
+from networkx.algorithms import community
 import torch
 
 
@@ -71,6 +72,13 @@ def to_device(batch, device):
 
     return feed_dict
 
+def to_device2(batch, device):
+    feed_dict = copy.deepcopy(batch)
+    graph = feed_dict["graph"]
+    # to device
+    feed_dict["graph"] = graph.to(device)
+
+    return feed_dict
 
 def get_pos_emb(pos, hid_dim):
     '''
@@ -88,4 +96,61 @@ def get_pos_emb(pos, hid_dim):
     return pos_emb
 
 
+def generate_node_mapping(G, type=None):
+    """
+    :param G:
+    :param type:
+    :return:
+    """
+    if type == 'degree':
+        s = sorted(G.degree, key=lambda x: x[1], reverse=True)
+        new_map = {s[i][0]: i for i in range(len(s))}
+    elif type == 'community':
+        cs = list(community.greedy_modularity_communities(G))
+        l = []
+        for c in cs:
+            l += list(c)
+        new_map = {l[i]:i for i in range(len(l))}
+    else:
+        new_map = None
 
+    return new_map
+
+
+def networkx_reorder_nodes(G, type=None):
+    """
+    :param G:  networkX only adjacency matrix without attrs
+    :param nodes_map:  nodes mapping dictionary
+    :return:
+    """
+    nodes_map = generate_node_mapping(G, type)
+    if nodes_map is None:
+        return G
+    C = nx.to_scipy_sparse_matrix(G, format='coo')
+    new_row = np.array([nodes_map[x] for x in C.row], dtype=np.int32)
+    new_col = np.array([nodes_map[x] for x in C.col], dtype=np.int32)
+    new_C = sp.coo_matrix((C.data, (new_row, new_col)), shape=C.shape)
+    new_G = nx.from_scipy_sparse_matrix(new_C)
+    return new_G
+
+def grid_8_neighbor_graph(N):
+    """
+    Build discrete grid graph, each node has 8 neighbors
+    :param n:  sqrt of the number of nodes
+    :return:  A, the adjacency matrix
+    """
+    N = int(N)
+    n = int(N ** 2)
+    dx = [-1, 0, 1, -1, 1, -1, 0, 1]
+    dy = [-1, -1, -1, 0, 0, 1, 1, 1]
+    A = torch.zeros(n, n)
+    for x in range(N):
+        for y in range(N):
+            index = x * N + y
+            for i in range(len(dx)):
+                newx = x + dx[i]
+                newy = y + dy[i]
+                if N > newx >= 0 and N > newy >= 0:
+                    index2 = newx * N + newy
+                    A[index, index2] = 1
+    return A.float()
